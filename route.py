@@ -5,11 +5,20 @@ import database
 user_details = {} 
 session = {} 
 	
+
+@route('/css/<path>')  
+def css(path):  
+    return static_file(path, root='css')
+
+@route('/js/<path>')  
+def js(path):  
+    return static_file(path, root='js')
+
 @route('/')
 def index():
 	if('logged_in' not in session or not session['logged_in']):
 		return redirect('/login')
-	return "hello \n"+str(user_details)
+	return template('index',user=user_details)
 
 @route('/login',method=['POST', 'GET'])
 def login():
@@ -32,11 +41,14 @@ def login():
 		global user_details
 		user_details = login_return_data[0]
 		user_details["issuper"]=database.is_superuser(user_details["user_name"])
-		return redirect('/',)
+		return redirect('/')
 	elif(request.method == 'GET'):
 		return template('login')
 	
-
+@route('/logout')
+def logout():
+    session['logged_in'] = False
+    return redirect('login')
 
 @route('/register', method=['POST', 'GET'])
 def register():

@@ -99,7 +99,8 @@ def add_user(username,password,email,phone,issuper,date):
 		user_name,user_passwd,user_email,user_phone,submission_date,is_super)
 		VALUES(%s,%s,%s,%s,%s,%s);
 		'''
-		r = dictfetchone(cur,sql,(username,password,email,phone,date,issuper,))
+		cur.execute(sql, (username,password,email,phone,date,issuper,))
+		r = cur.fetchone()
 		conn.commit()
 		cur.close()                     # Close the cursor
 		conn.close()
@@ -115,7 +116,7 @@ def add_user(username,password,email,phone,issuper,date):
 #     ret=True
 #     try:
 #         my_sender='admin@admin.com'
-#         msg=MIMEText('''Dear{}：\n\nbalabala!'''.format(username),'plain','utf-8')
+#         msg=MIMEText('''Dear{}：\nSuccessful!'''.format(username),'plain','utf-8')
 #         msg['From']=formataddr(["sng admin",my_sender])   
 #         msg['To']=formataddr([my_user,my_user])   
 #         msg['Subject']='Successful'

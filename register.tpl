@@ -1,16 +1,23 @@
+% include('top.tpl')
 <html>
     <head>
     <title>Register</title>
     </head>
     <body>
-        <p><h2>Register</h2></p>
-        <form action="/register" method="post">
-            Username: <input name="username" type="text" />
-            Password: <input name="password" type="password" />
-            email: <input name="email" type="text" />
-            phone: <input name="phone" type="text" />
-            Super or Not: <input name="issuper" type="text" />
-            <input value="Register" type="submit" />
-        </form>
+
+        <div class="content">
+            <h1 class="title">Register</h1>
+
+            <form class="login" method="POST" action="/register">
+                <input type="text" name="username" placeholder="Username" autofocus required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="text" name="email" placeholder="email" autofocus required>
+                <input type="text" name="phone" placeholder="phone" autofocus required>
+                <input type="text" name="issuper" placeholder="is super or not" autofocus required>
+                <button class="flat" type="submit">Register</button>
+                <input class="flat" type="button" value="Back" onclick="javascript:window.location.href='http://0.0.0.0:8080/login'"/>
+            </form>
+        </div>
     </body>
 </html>
+% include('bottom.tpl')

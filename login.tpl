@@ -1,14 +1,12 @@
-<html>
-    <head>
-    <title>Login</title>
-    </head>
-    <body>
-        <p><h2>Login</h2></p>
-        <form action="/login" method="post">
-            Username: <input name="username" type="text" />
-            Password: <input name="password" type="password" />
-            <input value="Login" type="submit" />
+% include('top.tpl')
+    <div class="content">
+        <h1 class="title">Log in</h1>
+
+        <form class="login" method="POST" action="/login">
+            <input type="text" name="username" placeholder="Username" autofocus required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button class="flat" type="submit">Log in</button>
+            <input class="flat" type="button" value="Register" onclick="javascript:window.location.href='http://0.0.0.0:8080/register'"/>
         </form>
-        <input type="button" value="Register" onclick="javascript:window.location.href='http://0.0.0.0:8080/register'"/>
-    </body>
-</html>
+    </div>
+% include('bottom.tpl')
