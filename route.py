@@ -9,7 +9,7 @@ session = {}
 def index():
 	if('logged_in' not in session or not session['logged_in']):
 		return redirect('/login')
-	return "hello "+str(user_details)
+	return "hello \n"+str(user_details)
 
 @route('/login',method=['POST', 'GET'])
 def login():
@@ -30,7 +30,8 @@ def login():
 
         # Store the user details for us to use throughout
 		global user_details
-		user_details = login_return_data[1]
+		user_details = login_return_data[0]
+		user_details["issuper"]=database.is_superuser(user_details["user_name"])
 		return redirect('/',)
 	elif(request.method == 'GET'):
 		return template('login')
@@ -45,6 +46,7 @@ def register():
 			request.forms.get('password'),
 			request.forms.get('email'),
 			request.forms.get('phone'),
+			request.forms.get('issuper'),
 			time.strftime("%Y-%m-%d", time.localtime()) 
         )
 		return redirect('/login',)

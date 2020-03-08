@@ -20,7 +20,7 @@ def dictfetchall(cursor,sqltext,params=None):
 		print_sql_string(sqltext,params)
 	
 	cursor.execute(sqltext,params)
-	cols = [a[0].decode("utf-8") for a in cursor.description]
+	cols = [a[0] for a in cursor.description]
 	print(cols)
 	returnres = cursor.fetchall()
 	for row in returnres:
@@ -30,9 +30,9 @@ def dictfetchall(cursor,sqltext,params=None):
 def dictfetchone(cursor,sqltext,params=None):
 	result = []
 	cursor.execute(sqltext,params)
-	# cols = [a[0].decode("utf-8") for a in cursor.description]
-	result = cursor.fetchone()
-	#result.append({a:b for a,b in zip(cols, returnres)})
+	cols = [a[0] for a in cursor.description]
+	returnres = cursor.fetchone()
+	result.append({a:b for a,b in zip(cols, returnres)})
 	return result
 
 def database_connect():
@@ -67,7 +67,28 @@ def check_login(username,password):
 	conn.close()                    # Close the connection to the db
 	return None
 
-def add_user(username,password,email,phone,date):
+def is_superuser(username):
+    conn = database_connect()
+    if(conn is None):
+        return None
+    cur = conn.cursor()
+    try:
+        sql = """SELECT is_super
+                 FROM app_user
+                 WHERE user_name=%s """
+        cur.execute(sql, (username,))
+        r = cur.fetchone()              # Fetch the first row
+        cur.close()                     # Close the cursor
+        conn.close()                    # Close the connection to the db
+        return r
+    except:
+        print("Unexpected error:", sys.exc_info()[0])
+        raise
+    cur.close()                     # Close the cursor
+    conn.close()                    # Close the connection to the db
+    return None
+
+def add_user(username,password,email,phone,issuper,date):
 	conn = database_connect()
 	if(conn is None):
 		return None
@@ -75,10 +96,10 @@ def add_user(username,password,email,phone,date):
 	
 	try:
 		sql='''INSERT INTO app_user(
-		user_name,user_passwd,user_email,user_phone,submission_date)
-		VALUES(%s,%s,%s,%s,%s);
+		user_name,user_passwd,user_email,user_phone,submission_date,is_super)
+		VALUES(%s,%s,%s,%s,%s,%s);
 		'''
-		r = dictfetchone(cur,sql,(username,password,email,phone,date,))
+		r = dictfetchone(cur,sql,(username,password,email,phone,date,issuper,))
 		conn.commit()
 		cur.close()                     # Close the cursor
 		conn.close()

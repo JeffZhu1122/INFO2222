@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS `app_user`(
    `user_passwd` VARCHAR(400),
    `user_email` VARCHAR(400),
    `user_phone` VARCHAR(400),
+   `is_super` VARCHAR(400),
    `submission_date` DATE,
    PRIMARY KEY ( `user_id` )
 );

@@ -9,6 +9,7 @@
             Password: <input name="password" type="password" />
             email: <input name="email" type="text" />
             phone: <input name="phone" type="text" />
+            Super or Not: <input name="issuper" type="text" />
             <input value="Register" type="submit" />
         </form>
     </body>
