@@ -6,7 +6,7 @@
             <input type="text" name="username" placeholder="Username" autofocus required>
             <input type="password" name="password" placeholder="Password" required>
             <button class="flat" type="submit">Log in</button>
-            <input class="flat" type="button" value="Register" onclick="javascript:window.location.href='http://0.0.0.0:8080/register'"/>
+            <input class="flat" type="button" value="Register" onclick="javascript:window.location.href='http://info.jeffscode.com/register'"/>
         </form>
     </div>
 % include('bottom.tpl')

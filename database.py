@@ -13,16 +13,13 @@ def print_sql_string(inputstring, params=None):
 
 def dictfetchall(cursor,sqltext,params=None):
 	result = []
-	if (params is None):
-		print(sqltext)
-	else:
-		print("we HAVE PARAMS!")
-		print_sql_string(sqltext,params)
 	
 	cursor.execute(sqltext,params)
 	cols = [a[0] for a in cursor.description]
-	print(cols)
+
 	returnres = cursor.fetchall()
+	if returnres==None:
+		return None
 	for row in returnres:
 		result.append({a:b for a,b in zip(cols, row)})
 	return result
@@ -32,6 +29,8 @@ def dictfetchone(cursor,sqltext,params=None):
 	cursor.execute(sqltext,params)
 	cols = [a[0] for a in cursor.description]
 	returnres = cursor.fetchone()
+	if returnres==None:
+		return None
 	result.append({a:b for a,b in zip(cols, returnres)})
 	return result
 
@@ -55,16 +54,16 @@ def check_login(username,password):
 	try:
 		sql ='''SELECT *
 				FROM app_user
-				WHERE user_name=%s AND user_passwd=%s'''
+				WHERE user_name=%s AND user_passwd=%s;'''
 
 		r = dictfetchone(cur,sql,(username,password,))
-		cur.close()                     # Close the cursor
+		cur.close()                    
 		conn.close()
 		return r
 	except Exception as e:
 		print(e)
-	cur.close()                     # Close the cursor
-	conn.close()                    # Close the connection to the db
+	cur.close()                     
+	conn.close()                   
 	return None
 
 def is_superuser(username):
@@ -75,54 +74,87 @@ def is_superuser(username):
     try:
         sql = """SELECT is_super
                  FROM app_user
-                 WHERE user_name=%s """
+                 WHERE user_name=%s;"""
         cur.execute(sql, (username,))
-        r = cur.fetchone()              # Fetch the first row
-        cur.close()                     # Close the cursor
-        conn.close()                    # Close the connection to the db
+        r = cur.fetchone()           
+        cur.close()                    
+        conn.close()                    
         return r
-    except:
-        print("Unexpected error:", sys.exc_info()[0])
-        raise
-    cur.close()                     # Close the cursor
-    conn.close()                    # Close the connection to the db
+    except Exception as e:
+    	print(e)
+    cur.close()                     
+    conn.close()                   
     return None
 
-def add_user(username,password,email,phone,issuper,date):
+def add_user(username,password,email,phone,date):
 	conn = database_connect()
 	if(conn is None):
 		return None
 	cur = conn.cursor()
-	
 	try:
 		sql='''INSERT INTO app_user(
-		user_name,user_passwd,user_email,user_phone,submission_date,is_super)
-		VALUES(%s,%s,%s,%s,%s,%s);
+		user_name,user_passwd,user_email,user_phone,submission_date)
+		VALUES(%s,%s,%s,%s,%s);
 		'''
-		cur.execute(sql, (username,password,email,phone,date,issuper,))
+		cur.execute(sql, (username,password,email,phone,date,))
 		r = cur.fetchone()
 		conn.commit()
-		cur.close()                     # Close the cursor
+		cur.close()                    
 		conn.close()
 		return r
 	except Exception as e:
 		print(e)
-	
-	cur.close()                     # Close the cursor
-	conn.close()                    # Close the connection to the db
+	cur.close()                    
+	conn.close()                   
 	return None
 
-# def mail(my_user,username):
-#     ret=True
-#     try:
-#         my_sender='admin@admin.com'
-#         msg=MIMEText('''Dear{}：\nSuccessful!'''.format(username),'plain','utf-8')
-#         msg['From']=formataddr(["sng admin",my_sender])   
-#         msg['To']=formataddr([my_user,my_user])   
-#         msg['Subject']='Successful'
-#         server=smtplib.SMTP("52.65.238.130",25)  
-#         server.login("admin","admin")    
-#         server.sendmail(my_sender,my_user,str(msg))   
-#         server.quit()   
-#     except Exception:  
-#         ret=False
+def get_alluser():
+    conn = database_connect()
+    if(conn is None):
+        return None
+    cur = conn.cursor()
+    try:
+        sql = """select * from app_user;"""
+        r = dictfetchall(cur,sql)
+        cur.close()                     
+        conn.close()                    
+        return r
+    except Exception as e:
+        print(e)
+    cur.close()                     
+    conn.close()                    
+    return None
+
+def delete_user(user_id):
+    user_id=str(user_id)
+    conn = database_connect()
+    if (conn is None):
+        return None
+    cur = conn.cursor()
+    try:
+        sql = '''DELETE FROM app_user where user_id=%s; '''
+        cur.execute(sql, (user_id,))
+        conn.commit()
+        cur.close()
+    except Exception as e:
+        print(e)
+    cur.close()  
+    conn.close()  
+    return None
+
+def change_password(userid,password):
+    conn = database_connect()
+    if (conn is None):
+        return None
+    cur = conn.cursor()
+    try:
+        sql = """UPDATE app_user SET user_passwd=%s where user_id=%s;"""
+        r = cur.execute(sql,(password,userid,))
+        cur.close()                     
+        conn.commit()                  
+        return r
+    except Exception as e:
+        print(e)
+    cur.close()                   
+    conn.close()                   
+    return None

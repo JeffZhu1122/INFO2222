@@ -376,6 +376,11 @@ form.login input {
   margin: 10px 0;
 }
 
+form.login input[type="checkbox"]
+{
+
+}
+
 form.login button[type="submit"] {
   display: block;
   width: 50%;

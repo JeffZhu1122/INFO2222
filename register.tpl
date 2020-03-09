@@ -13,9 +13,8 @@
                 <input type="password" name="password" placeholder="Password" required>
                 <input type="text" name="email" placeholder="email" autofocus required>
                 <input type="text" name="phone" placeholder="phone" autofocus required>
-                <input type="text" name="issuper" placeholder="is super or not" autofocus required>
                 <button class="flat" type="submit">Register</button>
-                <input class="flat" type="button" value="Back" onclick="javascript:window.location.href='http://0.0.0.0:8080/login'"/>
+                <input class="flat" type="button" value="Back" onclick="javascript:window.location.href='http://info.jeffscode.com/login'"/>
             </form>
         </div>
     </body>
