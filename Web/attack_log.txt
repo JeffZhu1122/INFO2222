@@ -1,0 +1,52 @@
+08-05-20 03:54:50    attack:' OR '1'='1
+08-05-20 09:13:49    attack:>'''
+09-05-20 00:12:08      content: ' OR 1 --
+11-05-20 01:20:18      content: ';select * from Users --
+11-05-20 10:40:56      content: <script>alert(1);</script>
+11-05-20 10:41:44      content: <script>alert(1);</script>
+11-05-20 18:22:19      content: ' OR '1'='1
+11-05-20 18:22:33      content: ' OR '1'='1
+11-05-20 18:22:46      content: ' OR '1'='1
+11-05-20 18:23:19      content: <script>window.alert("Hello!")</script>
+11-05-20 18:45:41      content: ' OR '1'='1
+11-05-20 18:47:18      content: ' OR '1'='1
+11-05-20 18:58:44      content: <script type="text/javascript">alert("XSS");</script>
+11-05-20 19:02:04      content:  <script>window.alert("Hello!")</script>
+11-05-20 19:02:17      content:  <script>window.alert("Hello!")</script>
+11-05-20 19:02:39      content:  <script>window.alert("Hello!")</script>
+11-05-20 19:15:21      content: DROP TABLE *; SELECT 1 FROM Users WHERE username = âaâ AND password = âaâ OR â1â = â1â;
+11-05-20 19:15:47      content: DROP TABLE *; SELECT 1 FROM Users WHERE username = âaâ AND password = âaâ OR â1â = â1â;
+11-05-20 19:16:27      content: DROP TABLE *; SELECT 1 FROM Users WHERE username = âaâ AND password = âaâ OR â1â = â1â;
+11-05-20 19:18:11      content: ' OR '1'='1
+11-05-20 19:19:21      content: DROP TABLE *; SELECT 1 FROM Users WHERE username = âaâ AND password = âaâ OR â1â = â1â;
+11-05-20 19:20:33      content: ' OR '1'='1
+11-05-20 19:21:00      content: ' OR '1'='1
+11-05-20 20:33:40      content: ghz>hzx
+11-05-20 20:33:40      content: hzx"zxc
+11-05-20 20:33:40      content: zxc'xcv
+11-05-20 20:33:41      content: ghz>hzx
+11-05-20 20:33:41      content: hzx"zxc
+11-05-20 20:33:41      content: zxc'xcv
+11-05-20 20:42:29      content: ghz>hzx
+11-05-20 20:42:29      content: hzx"zxc
+11-05-20 20:42:30      content: zxc'xcv
+11-05-20 20:42:30      content: ghz>hzx
+11-05-20 20:42:30      content: hzx"zxc
+11-05-20 20:42:31      content: zxc'xcv
+11-05-20 21:51:14      content: <script>window.alert("hello")</script>
+11-05-20 22:30:07      content: ;select * from users where username=âUserâ;
+12-05-20 00:50:50      content: 105 OR 1=1
+12-05-20 00:51:16      content: 1=1
+12-05-20 00:51:34      content: 1=1
+13-05-20 00:28:44      content: '; DROP TABLE Users;--
+13-05-20 15:31:01      content: ' OR '1'='1
+13-05-20 15:31:08      content: ' OR '1'='1
+13-05-20 17:50:16      content: a_person or 1=1;
+<<<<<<< HEAD
+21-05-20 13:05:21      content: ghz>hzx
+21-05-20 13:09:19      content: ghz>hzx
+=======
+13-05-20 22:58:42      content: â;DROP TABLE *; SELECT 1 FROM Users where username=â1â AND password = âaâ OR â1â=â1
+13-05-20 22:58:59      content: â;DROP TABLE *; SELECT 1 FROM Users where username=â1â AND password = âaâ OR â1â=â1
+20-05-20 17:15:01      content: 'OR'1'='1
+>>>>>>> fa45c8c29490e10a9d2c1c9dd21f39d0b1f6e239

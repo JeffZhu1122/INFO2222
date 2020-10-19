@@ -1,0 +1,23 @@
+
+ 
+.inner{
+	positive:relative;
+	margin:0px auto 30px;
+	width:600px;
+	min-height: 230px;
+	border:2px solid black;
+}
+
+
+#chat * {
+    font-family: sans-serif;
+}
+
+#chat .window {
+    padding: 0px 0px auto;
+}
+
+#chat .timestamp {
+	width:600px;
+    text-align: right;
+}

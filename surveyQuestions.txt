@@ -1,0 +1,16 @@
+age				-- How old are you?
+gender 				-- What is your gender?
+country				-- Where are you from?
+year of study			-- What academic year are you in?
+program of study		-- What degree(s) are you studying?
+major(s)			-- What are your majors?
+websites usually used		-- What websites do you usually go to?
+likes/dislikes about USYD	-- Do you like or dislike USYD? Why?
+favourite uni interfaces	-- What interfaces of USYD do you like the most?
+career goals			-- What are your career plans and goals?
+personal challenge		-- What learning challenges have you experienced?
+favourite fav programming language
+favourite/least fav unit of study
+
+https://docs.google.com/forms/d/e/1FAIpQLSe0zKyoCri00RGA75DiSTAC6irTp6gTfa-dGKKSGPNHujzoew/viewform?usp=sf_link
+

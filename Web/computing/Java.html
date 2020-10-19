@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+        <form action="/upload/Java" method="post" enctype="multipart/form-data">
+            Upload your resources:
+          <input type="file" id="myFile" name="myfile" accept="image/png, image/jpeg, image/gif, image/jpg, .xls,.xlsx,.doc,.docx,.pdf,.mp4,.zip,.rar" multiple>
+          <input type="submit" name="submit" value="Submit">
+        </form>
+
+        % for i in uploads:
+            <div>
+                <a href="../uploads/Java/{{i}}" target="_blank">{{i}}</a>
+            </div>
+        % end
+        <br><br>
+        <!-- <div class="">
+            <input class="flat" type="button" value="Back" onclick="javascript:window.location.href='/computing'"/>
+        </div> -->
